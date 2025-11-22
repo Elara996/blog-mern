@@ -31,16 +31,30 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
 
-//MongoDB connection
-const uri =
-  process.env.MONGO_URI ||
-  "mongodb+srv://yididiyaabayneh0_db_user:NfynszaHgUQtvCNr@cluster0.fh8dvn0.mongodb.net/myDB?retryWrites=true&w=majority";
+// Middleware to parse JSON bodies
+
+// 1. --- CONNECT TO MONGODB ---
 mongoose
-  .connect(uri)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .connect(MONGO_URI)
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
 
+// 2. --- ADD THE NEW HEALTH CHECK/ROOT ROUTE HERE ---
+app.get("/", (req, res) => {
+  // This is what the browser sees when visiting the root URL
+  res.status(200).json({
+    message: "MERN Blog API is live and running!",
+    serviceStatus: "OK",
+    database: "Connected",
+  });
+});
 // Register route
 app.post("/api/register", async (req, res) => {
   try {
