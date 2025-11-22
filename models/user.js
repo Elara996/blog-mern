@@ -1,3 +1,9 @@
+// In your ./models/user.js file:
+
+const User = mongoose.model("User", userSchema);
+
+// 👇️ Change your export line to this:
+export default User;
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
