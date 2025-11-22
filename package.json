@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/Elara996/blog-mern.git"
   },
   "keywords": [],
