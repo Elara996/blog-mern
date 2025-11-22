@@ -1,5 +1,5 @@
 // In your ./models/user.js file:
-
+import mongoose from "mongoose";
 const User = mongoose.model("User", userSchema);
 
 // 👇️ Change your export line to this:
